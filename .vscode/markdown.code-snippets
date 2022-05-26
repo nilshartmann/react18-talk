@@ -33,12 +33,24 @@
   "Code Block": {
     "scope": "html",
     "prefix": "hc",
-    "body": ["", "<pre><code class=\"javascript\">", "  $0", "</code></pre>", ""]
+    "body": [
+      "",
+      "<pre><code class=\"javascript\">",
+      "  $0",
+      "</code></pre>",
+      ""
+    ]
   },
   "Code Fragment Block": {
     "scope": "html",
     "prefix": "hcf",
-    "body": ["", "<pre class=\"fragment\"><code class=\"javascript\">", "  $0", "</code></pre>", ""]
+    "body": [
+      "",
+      "<pre class=\"fragment\"><code class=\"javascript\">",
+      "  $0",
+      "</code></pre>",
+      ""
+    ]
   },
   "GraphQL Code Block": {
     "scope": "html",
@@ -48,12 +60,23 @@
   "GraphQL Code Fragent Block": {
     "scope": "html",
     "prefix": "gcf",
-    "body": ["", "<pre class=\"fragment\"><code class=\"graphql\">", "  $0", "</code></pre>", ""]
+    "body": [
+      "",
+      "<pre class=\"fragment\"><code class=\"graphql\">",
+      "  $0",
+      "</code></pre>",
+      ""
+    ]
   },
   "Java Code Fragent Block": {
     "scope": "html",
     "prefix": "jcf",
     "body": ["```java fragment  ", "  $0", "```", ""]
+  },
+  "JavaScript Code Fragent Block": {
+    "scope": "html",
+    "prefix": "jsf",
+    "body": ["```javascript fragment  ", "  $0", "```", ""]
   },
   "Markdown Todo": {
     "scope": "html",
