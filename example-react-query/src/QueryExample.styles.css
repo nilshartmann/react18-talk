@@ -1,0 +1,138 @@
+:root {
+  --color-main: black;
+  --color-primary: #ff4400;
+  --color-white: #fffdfc;
+  --grey-1: #f5f3f2;
+  --grey-2: #ebe7e6;
+  --grey-3: #595756;
+}
+
+.QueryExample {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.Container {
+  background-color: var(--grey-1);
+  margin-top: 2rem;
+  padding: 1rem 1rem;
+}
+
+.Container:first-child {
+  margin-top: 1.5rem;
+}
+
+.Container h1 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+}
+
+article h1 {
+  margin-top: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--color-main);
+}
+
+.QueryExample button {
+  background-color: var(--color-white);
+  color: var(--color-main);
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: var(--color-main) 0px 0px 0px 2px inset;
+
+  cursor: pointer;
+
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.QueryExample button:hover {
+  background-color: var(--color-primary);
+  box-shadow: var(--color-primary) 0px 0px 0px 2px inset;
+  color: var(--color-white);
+}
+
+.QueryExample button:disabled,
+.QueryExample button:hover:disabled {
+  color: var(--grey-2);
+  background-color: var(--color-white);
+  box-shadow: var(--grey-2) 0px 0px 0px 2px inset;
+  cursor: default;
+}
+
+
+
+/* Spinner CSS taken from: http://tobiasahlin.com/spinkit/ */
+.Spinner {
+  margin: auto 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 2rem 1rem 2rem;
+}
+
+
+.Spinner.secondary {
+  padding: 0
+}
+
+.Spinner h1 {
+  font-size: 1.5rem;
+}
+
+.Spinner > .bounce {
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 1.2em;
+  background-color: var(--color-primary);
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.Spinner.secondary >.bounce {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-primary);
+}
+
+.Spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.Spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+.Spinner.secondary .bounce3 {
+  margin-right:0;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+      -webkit-transform: scale(0);
+  }
+
+  40% {
+      -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+  }
+
+  40% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+  }
+}

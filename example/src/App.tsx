@@ -1,7 +1,6 @@
 import React from "react";
 import ExampleChart from "./ExampleChart";
 import ExampleChartWithDeferredValue from "./ExampleChartWithDeferredValue";
-import ExampleChartWithInterval from "./ExampleChartWithInterval";
 
 export default function App() {
   const [tab, setTab] = React.useState("use transition");
@@ -12,11 +11,13 @@ export default function App() {
       <button onClick={() => setTab("deferred value")}>
         With useDeferredValue
       </button>
-      <button onClick={() => setTab("with interval")}>with interval</button>
+      <button onClick={() => setTab("react query")}>React Query</button>
+
+      {/* <button onClick={() => setTab("with interval")}>with interval</button> */}
 
       {tab === "use transition" && <ExampleChart />}
       {tab === "deferred value" && <ExampleChartWithDeferredValue />}
-      {tab === "with interval" && <ExampleChartWithInterval />}
+      {/* {tab === "with interval" && <ExampleChartWithInterval />} */}
     </div>
   );
 }
