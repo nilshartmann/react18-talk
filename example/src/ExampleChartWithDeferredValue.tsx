@@ -126,7 +126,7 @@ function TheChart({ barDatas }: { barDatas: BarData[] }) {
   const deferredValue = React.useDeferredValue(barDatas);
   const ref = React.useRef(deferredValue[0].id);
   console.log(
-    "%cRender%c barData from props: '%s', deferredValue: '%s'",
+    "%cRender%c TheChart barData from props: '%s', deferredValue: '%s'",
     logRenderBubbleStyle,
     logRenderStyle,
     barDatas[0].id,
@@ -137,7 +137,7 @@ function TheChart({ barDatas }: { barDatas: BarData[] }) {
     const newId = deferredValue[0].id;
     if (newId !== ref.current) {
       console.log(
-        "%cCommit%c barData from props: '%s', deferredValue: '%s' ",
+        "%cCommit%c TheChart barData from props: '%s', deferredValue: '%s' ",
         logCommitBubbleStyleGreen,
         logCommitStyleGreen,
         barDatas[0].id,
@@ -145,15 +145,15 @@ function TheChart({ barDatas }: { barDatas: BarData[] }) {
       );
       ref.current = newId;
     } else {
-      console.log(
-        "%cCommit%c barData from props: '%c%s%c', deferredValue: '%s' ",
-        logCommitBubbleStyle,
-        logCommitStyle,
-        logCommitStyleOldValue,
-        barDatas[0].id,
-        logCommitStyle,
-        newId
-      );
+      // console.log(
+      //   "%cCommit%c TheChart barData from props: '%c%s%c', deferredValue: '%s' ",
+      //   logCommitBubbleStyle,
+      //   logCommitStyle,
+      //   logCommitStyleOldValue,
+      //   barDatas[0].id,
+      //   logCommitStyle,
+      //   newId
+      // );
     }
   });
 

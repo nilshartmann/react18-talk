@@ -70,9 +70,11 @@ Reveal.initialize({
     });
 
     // li having a code inside, should not have a bullet point (see also styles.css)
-    document.querySelectorAll("li > pre.code-wrapper").forEach((n) => {
-      n.parentNode.classList.add("no-icon");
-    });
+    document
+      .querySelectorAll("li > pre.code-wrapper, li > img")
+      .forEach((n) => {
+        n.parentNode.classList.add("no-icon");
+      });
   } else {
     // public version
 

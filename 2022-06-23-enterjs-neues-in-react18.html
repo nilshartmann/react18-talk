@@ -129,7 +129,7 @@
 
 ## Automatic Batching
 
-* Vor React 18 wurden mehrere set-State-Aufrufe zusammengefasst, wenn sie als Folge eines Events aufgerufen wurden:
+* Mehrere set-State-Aufrufe werden zusammengefasst, wenn sie als Folge eines Events aufgerufen wurden (schon vor React 18):
 * ```javascript
   function PersonForm() {
     const [firstname, setFirstname] = useState("");
@@ -153,7 +153,7 @@
 
 ## Automatic Batching
 
-* Vor React 18 wurden mehrere set-State-Aufrufe **nicht** zusammengefasst, wenn sie z.B. in Promises aufgerufen wurden:
+* **Ab React 18** werden auch mehrere set-State-Aufrufe zusammengefasst, wenn sie z.B. in Promises aufgerufen wurden:
 * ```javascript
   function Blog() {
     const [post, setPost] = useState(null);
@@ -164,7 +164,7 @@
         .then(res => res.json())
         .then(data => {
 
-          // ZWEI Renderzyklen
+          // EIN Renderzyklus (vor React 18: ZWEI Renderzyklen)
           setPost(data);
           setLoading(false);
         })
@@ -179,56 +179,72 @@
 
 ---
 
-## Automatic Batching
-
-* Ab React 18 werden set-State-Aufrufe zusammengefasst, auch wenn sie in Promises, setTimout etc. gemacht werden
-* ```javascript
-  function Blog() {
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState("");
-    
-    function loadPost() {
-      fetch("...")
-        .then(res => res.json())
-        .then(data => {
-
-          // Ab React 18: EIN Renderzyklus
-          setPost(data);
-          setLoading(false);
-        })
-    }
-
-    return &lt;div&gt;
-      ...
-      &lt;button onClick={loadPost}>Load Blog Post&lt;/button&gt;
-      &lt;/div&gt;
-  }
-  ```
-
----
 
 ## Neuer Strict-Mode
 
-* Zweimal gerendert
-* Stellt sicher, dass Effekte (insb. clean ups) korrekt durchgeführt werden
-    * Naja, ob das immer klappt...
+* Verwendung des StrictModes wie bisher:
+  * ```javascript
+    render(
+      <React.StrictMode>
+        <App/>
+      </React.StrictMode>
+    )
+```
+* Bisher wurde mit dem StrictMode jede Komponente zweimal **gerendert**
+* Nun wird die Komponente nicht nur gerendert, sondern auch einmal **gemounted** (Effekte werden ausgeführt), ...
+* ...wieder **entfernt** (Clean ups werden ausgeführt)... 
+* und dann mit selben State erneut **gemounted**
+* Soll sicherstellen, dass Effekte (insb. Clean ups) korrekt durchgeführt werden
+  * Ihr müsst allerdings selbst prüfen, ob die Effekte korrekt "aufgeräumt" werden
 
 ---
 
 ## Neue Hooks
 
-* `useId`: Generiert eindeutige IDs (die identisch auf Server und Client sind)
-* BEISPIEL 
-  * nicht nutzbar für `key` in Listen
-* `useDingsbumEffect`
+* Neuer Hook `useId`, um Server- und Client-seitig identische, eindeutige Ids zu generieren
+  * ```javascript
+    function Form() {
+      const infoId = React.useId();
+      return &lt;form>
+        &lt;label>
+          Title
+        &lt;input aria-describedby={infoId} value="..." />
+        &lt;/label>
+        &lt;span id={infoId} className="info">Enter new Title&lt;/span>
+      &lt;/form>;
+  }
+```
+* Verwendung für `id`-Attribute (nicht für `key`-Attribute)
+* Außerdem neue Hooks für Libraries (`useSyncExternalStore` und `useInsertionEffect`)
 
 ---
 
-## Concurrent Rendering
+# Concurrent Rendering
+
+* ![RR](./slides/images/react-roadmap-2018.png)
+  * [Neues Rendering Verhalten, erstmals angekündigt Ende 2018](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html)
+* React kann mehrere "Versionen" der UI parallel erstellen bzw. vorhalten
 
 https://reactjs.org/blog/2022/03/29/react-v18.html
 
-## Suspense
+## Transitions
+
+* Kennzeichnung weniger dringender Aktualisierungen
+* Rendern kann dann abgebrochen werden
+* Bin nicht sicher, wie häufig man das Problem wirklich hat
+* `useTransition`-Hook: alle State-Updates darin werden als "weniger dringend" angesehen
+  * ```javascript
+  function App() {
+    
+    const [isPending, startTransition] = React.useTransition();
+
+    function handleChange(e) {
+      startTransition(() => {
+        set
+      })
+    }
+  }
+```  
 
 ---
 
@@ -242,11 +258,25 @@ https://reactjs.org/blog/2022/03/29/react-v18.html
 
 ## Suspense Data Loading
 
-* Experimentell u.a. NextJS
+* Beispiel: React Query
 
---
+---
+
+### Suspense Data Loading mit React Query
+
+* Beispiel zeigen
+* App laden => Spinner!
+* Post öffnen => Zwei Spinner, erst Artikel, dann Kommentare ....
+* `PostPage`:  Suspense um SinglePost packen
+* Post öffnen => Loading, dann nur noch Spinner um KOmmentare
+* Kommentare auch umschliessen
+* Was man macht => fachliche Entscheidung!
+
+---
 
 ## Server Components
+
+* Experimental u.a Next JS
 
 
 

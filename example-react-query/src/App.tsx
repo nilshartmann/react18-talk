@@ -1,18 +1,8 @@
 import React from "react";
-import "./QueryExample.styles.css";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { Comment } from "./types";
+import { useQuery } from "react-query";
+import { BlogPost, Comment } from "./types";
 import * as api from "./api";
 import LoadingIndicator from "./LoadingIndicator";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      suspense: true,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
 
 export default function App() {
   const [postId, setPostId] = React.useState<string | null>(null);
@@ -22,16 +12,14 @@ export default function App() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="QueryExample">
-        <h1>Blog App</h1>
-        {postId === null ? (
-          <HomePage onPostClick={handlePostClick} />
-        ) : (
-          <PostPage postId={postId} onHomeClick={() => setPostId(null)} />
-        )}
-      </div>
-    </QueryClientProvider>
+    <div className="QueryExample">
+      <h1>Blog App</h1>
+      {postId === null ? (
+        <HomePage onPostClick={handlePostClick} />
+      ) : (
+        <PostPage postId={postId} onHomeClick={() => setPostId(null)} />
+      )}
+    </div>
   );
 }
 
@@ -41,6 +29,21 @@ type BlogListProps = {
 
 function BlogList({ onPostClick }: BlogListProps) {
   const { data: posts } = useQuery("posts", api.getPosts);
+
+  return (
+    <div>
+      <h3>Newest Blog Posts</h3>
+
+      <BlogTeaserList posts={posts!} onPostClick={onPostClick} />
+    </div>
+  );
+}
+
+type BlogTeaserListProps = {
+  posts: BlogPost[];
+  onPostClick(newPostId: string): void;
+};
+function BlogTeaserList({ posts, onPostClick }: BlogTeaserListProps) {
   const [pendingPostId, setPendingPostId] = React.useState<string | null>(null);
   const [isPending, startTransition] = React.useTransition();
 
