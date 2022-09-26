@@ -11,7 +11,7 @@ export default function App() {
       <button onClick={() => setTab("deferred value")}>
         With useDeferredValue
       </button>
-      <button onClick={() => setTab("react query")}>React Query</button>
+      {/* <button onClick={() => setTab("react query")}>React Query</button> */}
 
       {/* <button onClick={() => setTab("with interval")}>with interval</button> */}
 
