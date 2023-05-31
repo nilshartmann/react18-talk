@@ -1,0 +1,19 @@
+VORBEREITUNG:
+
+1. webstorm /Users/nils/develop/javascript/serverside-react-playground/nextjs-blog
+ - backend starten
+ - anwendung starten (Dev mode)
+
+2. webstorm /Users/nils/develop/javascript/rsc-step-by-step
+  - Sicherstellen, dass "start"-Stand im app-Verzeichnis ist
+  - Anwendung noch NICHT starten
+
+
+
+React 2023 - Beginn einer neuen Ära?
+
+Zu Jahresbeginn hat ein Tweet des React Kern-Team-Mitglieds Andrew Clark für Aufsehen gesorgt. Seiner Meinung nach solle man React nur noch mit einem Framework wie NextJS oder Remix verwenden und nicht mehr "standalone". "Mittlerweile findet sich diese Empfehlung auch ganz offiziell in der aktualisierten React-Dokumentation."
+
+In dieser Session möchte ich auf die Hintergründe dieser Aussagen eingehen, und an konkreten Beispiel zeigen, was Frameworks wie NextJS und Remix eigentlich auszeichnet, wofür und wann sie sich zusammen mit React eignen und was deren Einsatz an Konsequenzen und möglicherweise neuen Problemem schafft. Nach der Session könnt ihr selbst bewerten, ob es eine neue "React Ära" gibt oder nicht, und ob das eine für Euch eher gute oder schlechte Ära wäre.
+
+Diese Session richtet sich in erster Linie an React Entwickler:innen, aber grundsätzliche Fragestellungen, die wir behandeln, sind auch für Architekt:innen von Web-Anwendungen relevant.
